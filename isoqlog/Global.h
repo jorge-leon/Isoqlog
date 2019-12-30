@@ -5,6 +5,9 @@
 
 #define VERSION_STRING	"EnderUNIX Isoqlog 2.2-BETA"
 
+#define TO_STR2(x) #x
+#define TO_STR(x) TO_STR2(x)
+#define CONFFILE (TO_STR(SYSCONFDIR) "/isoqlog.conf")
 
 enum {
         BUFSIZE = 1024,

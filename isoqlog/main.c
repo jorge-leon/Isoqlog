@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 	general.from_byte = 0;
 	
 	if (f == 0) 
-		readconfig("/usr/local/etc/isoqlog.conf");
+		readconfig(CONFFILE);
 	else 
 		readconfig(isoqlogconf);
 	loadLang(langfile);

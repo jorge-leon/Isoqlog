@@ -173,34 +173,33 @@ void freeSortDomainTab()
 
 int addUserToSortTab(user *usr)
 {
-	int *u;
+	user **u;
 
 	if (SortDomain.allusers == NULL) { /* first time */
-		SortDomain.allusers = (int *)malloc(NVINIT * sizeof(int *));
+		SortDomain.allusers = (user **)malloc(NVINIT * sizeof(user *));
 		if (SortDomain.allusers == NULL)
 			return -1;
 		SortDomain.max = NVINIT;
 		SortDomain.nval = 0;
 	} else
 	if (SortDomain.nval >= SortDomain.max) { /* growing....*/
-		u = (int *)realloc(SortDomain.allusers,
-				(NVGROW * SortDomain.max) * sizeof(int *));
+		u = (user **)realloc(SortDomain.allusers,
+				(NVGROW * SortDomain.max) * sizeof(user *));
 		if (u == NULL)
 			return -1;
 		SortDomain.max *= NVGROW;
 		SortDomain.allusers = u;
 	}
-	SortDomain.allusers[SortDomain.nval] = (int)usr;
+	SortDomain.allusers[SortDomain.nval] = usr;
 	return SortDomain.nval++;
 }
 
 
 void sortDomainUsersFrom(char *domain) 
 {
-	int tmpnval, i, j, max, tmp;
+	int tmpnval, i, j, max;
 	struct domain *domainptr;
-	struct user *sym;
-	struct user *tmp1, *tmp2;
+	struct user *sym, *tmp1, *tmp2, *tmp;
 
 	tmpnval = -1;
 	for (i = 0; i < DomainsTab.nval; i++) 
@@ -233,10 +232,9 @@ void sortDomainUsersFrom(char *domain)
 
 void sortDomainUsersTo(char *domain) 
 {
-	int tmpnval, i, j, max, tmp;
+	int tmpnval, i, j, max;
 	struct domain *domainptr;
-	struct user *sym;
-	struct user *tmp1, *tmp2;
+	struct user *sym, *tmp1, *tmp2, *tmp;
 
 	tmpnval = -1;
 	for (i = 0; i < DomainsTab.nval; i++) 
@@ -268,10 +266,9 @@ void sortDomainUsersTo(char *domain)
 
 void sortDomainUsersTotal(char *domain) 
 {
-	int tmpnval, i, j, max, tmp;
+	int tmpnval, i, j, max;
 	struct domain *domainptr;
-	struct user *sym;
-	struct user *tmp1, *tmp2;
+	struct user *sym, *tmp1, *tmp2, *tmp;
 
 	tmpnval = -1;
 	for (i = 0; i < DomainsTab.nval; i++) 
@@ -307,10 +304,9 @@ void sortDomainUsersTotal(char *domain)
 
 void sortDomainUsersByte(char *domain) 
 {
-	int tmpnval, i, j, max, tmp;
+	int tmpnval, i, j, max;
 	struct domain *domainptr;
-	struct user *sym;
-	struct user *tmp1, *tmp2;
+	struct user *sym, *tmp1, *tmp2, *tmp;
 
 	tmpnval = -1;
 	for (i = 0; i < DomainsTab.nval; i++) 
@@ -345,9 +341,7 @@ void sortUsersFrom()
 {
 	int i, j, max;
 	globuser *sym;
-	int tmp;
-	user *tmp1;
-	user *tmp2;
+	user *tmp1, *tmp2, *tmp;
 
 
 	for (i = 0; i < MAXUSERS; i++) 
@@ -373,9 +367,7 @@ void sortUsersTo()
 {
 	int i, j, max;
 	globuser *sym;
-	int tmp;
-	user *tmp1;
-	user *tmp2;
+	user *tmp1, *tmp2, *tmp;
 
 
 	for (i = 0; i < MAXUSERS; i++) 
@@ -402,9 +394,7 @@ void sortUsersTotal()
 {
 	int i, j, max;
 	globuser *sym;
-	int tmp;
-	user *tmp1;
-	user *tmp2;
+	user *tmp1,*tmp2, *tmp;
 
 
 	for (i = 0; i < MAXUSERS; i++) 
@@ -430,9 +420,7 @@ void sortUsersByte()
 {
 	int i, j, max;
 	globuser *sym;
-	int tmp;
-	user *tmp1;
-	user *tmp2;
+	user *tmp1, *tmp2, *tmp;
 
 
 	for (i = 0; i < MAXUSERS; i++) 

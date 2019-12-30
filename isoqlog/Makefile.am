@@ -1,3 +1,5 @@
+AM_CPPFLAGS = -DSYSCONFDIR='$(sysconfdir)'
+
 bin_PROGRAMS = isoqlog
 
 
@@ -9,14 +11,14 @@ SUBDIRS = lang htmltemp
 EXTRA_DIST = Data.c Dir.c Html.c LangCfg.c loadconfig.c main.c Parser.c Store.c Data.h Dir.h Html.h Global.h LangCfg.h loadconfig.h Parser.h Store.h isoqlog.conf-dist isoqlog.conf.sample1 isoqlog.conf.sample2 isoqlog.conf.sample3 isoqlog.domains-dist 
 
 install-data-local:
-	$(mkinstalldirs) /usr/local/etc/
-	$(INSTALL_DATA) $(srcdir)/isoqlog.conf-dist /usr/local/etc/isoqlog.conf-dist
-	$(mkinstalldirs) /usr/local/etc/
-	$(INSTALL_DATA) $(srcdir)/isoqlog.domains-dist /usr/local/etc/isoqlog.domains-dist
+	$(mkinstalldirs) $(sysconfdir)/
+	$(INSTALL_DATA) $(srcdir)/isoqlog.conf-dist $(sysconfdir)/isoqlog.conf-dist
+	$(mkinstalldirs) $(sysconfdir)/
+	$(INSTALL_DATA) $(srcdir)/isoqlog.domains-dist $(sysconfdir)/isoqlog.domains-dist
 
 uninstall-local:
-	-rm -f /usr/local/etc/isoqlog.conf-dist
-	-rm -f /usr/local/etc/isoqlog.domains-dist
+	-rm -f $(sysconfdir)/isoqlog.conf-dist
+	-rm -f $(sysconfdir)/isoqlog.domains-dist
 
 # set the include path found by configure
 INCLUDES= $(all_includes)

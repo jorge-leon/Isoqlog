@@ -107,7 +107,7 @@ struct UsersTab {
 struct SortDomain {
 	int nval;
 	int max;
-	int *allusers;
+	user **allusers;
 } SortDomain;
 	
 #endif
